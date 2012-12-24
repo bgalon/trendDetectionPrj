@@ -4,15 +4,53 @@
   <artifactId>trend-detection</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   
+   <properties>
+    <neo4j.version>1.8.1</neo4j.version>
+   </properties>
+  
   <repositories>
-  	<repository>
+   	<repository>
 	      <id>neo4j-public-repository</id>
 	      <name>Publically available Maven 2 repository for Neo4j</name>
 	      <url>http://m2.neo4j.org</url>
 	      <snapshots>
           	<enabled>true</enabled>
 	      </snapshots>
-	  </repository>
+	      <releases>
+        	<enabled>true</enabled>
+      	  </releases>
+	  </repository>	  
+	  
+<!--  	  <repository>
+      <id>neo4j-snapshot-repository</id>
+      <name>Maven 2 snapshot repository for Neo4j</name>
+      <url>http://m2.neo4j.org/content/repositories/snapshots</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+    </repository>
+    <repository>
+      <id>neo4j-release-repository</id>
+      <name>Maven 2 release repository for Neo4j</name>
+      <url>http://m2.neo4j.org/content/repositories/releases</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </repository>
+     -->
+    <repository>
+      <id>tinkerpop-snapshot-repository</id>
+      <name>Tinkerpop snapshot repo</name>
+      <url>http://tinkerpop.com/maven2</url>
+    </repository>
+    
+
   </repositories>
   
   
@@ -21,20 +59,39 @@
   	<dependency>
     	<groupId>org.neo4j</groupId>
     	<artifactId>neo4j</artifactId>
-    	<version>1.8</version>
+    	<version>${neo4j.version}</version>
 	</dependency>
+	<dependency>
+      <groupId>org.neo4j</groupId>
+      <artifactId>neo4j-kernel</artifactId>
+      <version>${neo4j.version}</version>
+    </dependency>
+	<dependency>
+      <groupId>org.neo4j</groupId>
+      <artifactId>server-api</artifactId>
+      <version>${neo4j.version}</version>
+    </dependency>
 	<dependency> 
 	  <groupId>org.neo4j</groupId>
 	  <artifactId>neo4j-spatial</artifactId>
 	  <version>0.10-SNAPSHOT</version>
 	</dependency>
 	
+	<!-- Not sure if needed check error form geoPipeline -->
+	<dependency>
+  		<groupId>com.tinkerpop.gremlin</groupId>
+  		<artifactId>gremlin-groovy</artifactId>
+		<version>1.5</version>
+		<type>jar</type>
+        <scope>provided</scope>
+	</dependency>
+	
 	<!-- JTS -->
 	<dependency>
-	<groupId>com.vividsolutions</groupId>
-	<artifactId>jts</artifactId>
-	<version>1.12</version>
-</dependency>
+		<groupId>com.vividsolutions</groupId>
+		<artifactId>jts</artifactId>
+		<version>1.12</version>
+	</dependency>
   </dependencies>
   
   <build>
