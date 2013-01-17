@@ -25,6 +25,10 @@ public class SpatialNode extends NodeWrapper implements ISpatialEntity {
 		parent.createRelationshipTo(underlayingNode, SpatialRealtion.within);
 	}
 	
+	public void addChild(Node child){
+		underlayingNode.createRelationshipTo(child, SpatialRealtion.within);
+	}
+	
 	public void addSibling(Node sibling){
 		sibling.createRelationshipTo(underlayingNode, SpatialRealtion.siblings);
 	}
@@ -64,4 +68,12 @@ public class SpatialNode extends NodeWrapper implements ISpatialEntity {
 		}
 		return returnedColl;
 	}
+	
+	@Override
+	public boolean equals( Object o )
+	{
+	    return o instanceof SpatialNode &&
+	    		underlayingNode.equals( ( (SpatialNode)o ).underlayingNode);
+	}
+
 }

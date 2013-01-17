@@ -65,7 +65,7 @@ public class SpatialStorageGraphImpl implements SpatialStorage {
 	}
 	
 	private ISpatialEntity addSE(Geometry geom, Map<String, String> attributes, Layer layer) throws Exception{
-		//run all this in transaction, we should think a bit more about the transactions.
+		//TODO:run all this in transaction, we should think a bit more about the transactions.
 		Transaction tx = gdb.beginTx();
 		try{
 			//1.Check if the geometry already exist in the layer
@@ -77,24 +77,29 @@ public class SpatialStorageGraphImpl implements SpatialStorage {
 			if (!(layer instanceof EditableLayer)){
 				throw new Exception("Layer " + layer.getName() + " is not intace of EditableLayer");
 			}
-			//2.build the spatial records
-			//TODO:think about do it in transaction - it will be nested transaction! 
+			//2. split the entity by a given set of roles
+			
+			
+			//3.build the spatial records
 			SpatialDatabaseRecord spatialRecord = ((EditableLayer)layer).add(geom);
 			for(Map.Entry<String, String> entry:attributes.entrySet()){
 				spatialRecord.setProperty(entry.getKey(), entry.getValue());
 			}
-			//3.find and update fathers
+			
+			
+			//4.find and update children 
 			SpatialNode newNode = new SpatialNode(spatialRecord.getGeomNode());
 			if (currentLayer > 0){
-				Layer parantLyaer = levels.get(currentLayer - 1);
-//				GeoPipeline parantPipeline = GeoPipeline.startWithinSearch(parantLyaer, geom);
-				GeoPipeline parantPipeline = GeoPipeline.startIntersectSearch(parantLyaer, geom);
-				for (Node result:parantPipeline.toNodeList()){
-					newNode.addParent(result);
+				Layer childernLayer = levels.get(currentLayer - 1);
+//				GeoPipeline parantPipeline = GeoPipeline.startContainSearch(childernLayer, geom);
+				GeoPipeline parantPipeline = GeoPipeline.startIntersectSearch(childernLayer, geom);
+				//TODO: test for case there are no results
+				for (Node child:parantPipeline.toNodeList()){
+					newNode.addChild(child);
 				}
 			}
 			
-			//4.find and update siblings
+			//5.find and update siblings
 			Geometry bufferedGeom = geom.buffer(METER * 3);
 			GeoPipeline sibilingPipeline = GeoPipeline.startIntersectSearch(layer, bufferedGeom);
 			for (Node result:sibilingPipeline.toNodeList()){

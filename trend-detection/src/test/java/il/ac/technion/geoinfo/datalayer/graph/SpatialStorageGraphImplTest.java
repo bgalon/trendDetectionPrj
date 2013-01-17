@@ -6,11 +6,15 @@ import java.util.HashMap;
 
 import il.ac.technion.geoinfo.datalayer.SSN;
 import il.ac.technion.geoinfo.datalayer.SpatialStorage;
+import il.ac.technion.geoinfo.domain.graphImpl.SpatialNode;
 import il.ac.technion.geoinfo.domain.interfaces.ISpatialEntity;
 
 import org.hamcrest.core.Is;
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
+import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.test.ImpermanentGraphDatabase;
 
 import com.vividsolutions.jts.geom.Geometry;
@@ -25,6 +29,18 @@ public class SpatialStorageGraphImplTest {
 	static final String LINESTRING_1 = "LINESTRING(-1 0, 7 11)";
 	static final String LINESTRING_2 = "LINESTRING(-1 -1, 7 15)";
 	
+	private GraphDatabaseService testDb;
+	
+	@Before
+	public void createTestDb(){
+		testDb = new ImpermanentGraphDatabase();
+	}
+	
+	@After
+	public void deleteTestDb(){
+		testDb.shutdown();
+	}
+	
 
 	@Test
 	public void testAddSpatialEntity() throws Exception {
@@ -34,18 +50,19 @@ public class SpatialStorageGraphImplTest {
 		Geometry line1 = wktReader.read(LINESTRING_1);
 		Geometry line2 = wktReader.read(LINESTRING_2);
 		
-		SSN ssn = new SSNgraphImpl(new ImpermanentGraphDatabase());
+		SSN ssn = new SSNgraphImpl(testDb);
 		
 		SpatialStorage ss = ssn.getSpatial();
 		
-		ISpatialEntity p1 = ss.addSpatialEntity(poly1, new HashMap<String,String>());
-		ISpatialEntity p2 = ss.addSpatialEntity(poly2, new HashMap<String,String>());
-		ss.closeLevel();
 		ISpatialEntity l1 = ss.addSpatialEntity(line1, new HashMap<String,String>());
 		ISpatialEntity l2 = ss.addSpatialEntity(line2, new HashMap<String,String>());
+		ss.closeLevel();
+		ISpatialEntity p1 = ss.addSpatialEntity(poly1, new HashMap<String,String>());
+		ISpatialEntity p2 = ss.addSpatialEntity(poly2, new HashMap<String,String>());
+
 		boolean hadParant = false;
 		for (ISpatialEntity parnt:l1.getParants()){
-			if (parnt == p1) hadParant = true;
+			if ((SpatialNode)parnt == (SpatialNode)p1) hadParant = true;
 		}
 		Assert.assertTrue(hadParant);
 		
