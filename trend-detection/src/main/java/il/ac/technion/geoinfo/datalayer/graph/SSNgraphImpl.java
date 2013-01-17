@@ -21,6 +21,14 @@ public class SSNgraphImpl implements SSN{
 		this.social = new SocialStorageGarphImpl(gdb);
 		this.spatial = new SpatialStorageGraphImpl(gdb);
 	}
+	
+	//this constructor use for testing
+	public SSNgraphImpl(GraphDatabaseService gdb){
+		this.gdbPath = null;
+		this.gdb = gdb;
+		this.social = new SocialStorageGarphImpl(gdb);
+		this.spatial = new SpatialStorageGraphImpl(gdb);
+	}
 
 
 	@Override
@@ -34,5 +42,12 @@ public class SSNgraphImpl implements SSN{
 		return spatial;
 	}
 	
+	public void Close(){
+		gdb.shutdown();
+	}
 	
+	@Override
+	public void finalize() throws Throwable{
+		Close();
+	}
 }

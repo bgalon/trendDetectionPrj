@@ -64,5 +64,4 @@ public class SpatialNode extends NodeWrapper implements ISpatialEntity {
 		}
 		return returnedColl;
 	}
-
 }

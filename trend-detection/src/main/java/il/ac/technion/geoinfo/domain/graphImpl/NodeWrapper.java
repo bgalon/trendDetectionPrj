@@ -10,6 +10,17 @@ public class NodeWrapper {
 		underlayingNode = theUnderlaying;
 	}
 	
-	
+	@Override
+	public int hashCode()
+	{
+	    return underlayingNode.hashCode();
+	}
+	 
+	@Override
+	public boolean equals( Object o )
+	{
+	    return o instanceof NodeWrapper &&
+	    		underlayingNode.equals( ( (NodeWrapper)o ).underlayingNode);
+	}
 
 }

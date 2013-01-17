@@ -6,6 +6,7 @@
   
    <properties>
     <neo4j.version>1.8.1</neo4j.version>
+    <neo4j.graphcollections.version>0.5-SNAPSHOT</neo4j.graphcollections.version>
    </properties>
   
   <repositories>
@@ -56,7 +57,7 @@
   
   <dependencies>
   <!-- Neo4j -->
-  	<dependency>
+  <!-- <dependency>
     	<groupId>org.neo4j</groupId>
     	<artifactId>neo4j</artifactId>
     	<version>${neo4j.version}</version>
@@ -66,11 +67,64 @@
       <artifactId>neo4j-kernel</artifactId>
       <version>${neo4j.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.neo4j</groupId>
+      <artifactId>neo4j-kernel</artifactId>
+      <version>${neo4j.version}</version>
+      <type>test-jar</type>
+      <scope>provided</scope>
+    </dependency>
 	<dependency>
       <groupId>org.neo4j</groupId>
       <artifactId>server-api</artifactId>
       <version>${neo4j.version}</version>
-    </dependency>
+    </dependency> -->
+    
+     <dependency>
+            <groupId>org.neo4j</groupId>
+            <artifactId>neo4j-graph-collections</artifactId>
+            <version>${neo4j.graphcollections.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.neo4j</groupId>
+            <artifactId>neo4j</artifactId>
+            <version>${neo4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.neo4j</groupId>
+            <artifactId>server-api</artifactId>
+            <version>${neo4j.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.neo4j</groupId>
+            <artifactId>neo4j-kernel</artifactId>
+            <version>${neo4j.version}</version>
+            <type>test-jar</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.neo4j.app</groupId>
+            <artifactId>neo4j-server</artifactId>
+            <version>${neo4j.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.neo4j.app</groupId>
+            <artifactId>neo4j-server</artifactId>
+            <version>${neo4j.version}</version>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.neo4j.examples</groupId>
+            <artifactId>neo4j-examples</artifactId>
+            <version>${neo4j.version}</version>
+            <type>test-jar</type>
+            <scope>test</scope>
+       </dependency>
+    
+    
 	<dependency> 
 	  <groupId>org.neo4j</groupId>
 	  <artifactId>neo4j-spatial</artifactId>
@@ -92,6 +146,13 @@
 		<artifactId>jts</artifactId>
 		<version>1.12</version>
 	</dependency>
+	<!-- junit4 -->
+	<dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.8.1</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
   
   <build>

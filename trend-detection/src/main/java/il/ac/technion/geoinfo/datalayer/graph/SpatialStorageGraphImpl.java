@@ -1,10 +1,12 @@
 package il.ac.technion.geoinfo.datalayer.graph;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
 import org.neo4j.gis.spatial.EditableLayer;
+import org.neo4j.gis.spatial.EditableLayerImpl;
 import org.neo4j.gis.spatial.Layer;
 import org.neo4j.gis.spatial.SpatialDatabaseRecord;
 import org.neo4j.gis.spatial.SpatialDatabaseService;
@@ -15,6 +17,7 @@ import org.neo4j.gis.spatial.encoders.SimplePropertyEncoder;
 import org.neo4j.gis.spatial.pipes.GeoPipeline;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Node;
+import org.neo4j.graphdb.Transaction;
 
 import scala.remote;
 
@@ -53,48 +56,60 @@ public class SpatialStorageGraphImpl implements SpatialStorage {
 	
 	
 	@Override
-	public void addSpatialEntity(Geometry geom, Map<String, String> attributes) throws Exception {
+	public ISpatialEntity addSpatialEntity(Geometry geom, Map<String, String> attributes) throws Exception {
 		if(currentLayer >= levels.size()){
-			levels.add(sdb.createLayer(levelName(currentLayer), WKTGeometryEncoder.class, EditableLayer.class));
+			levels.add(sdb.createLayer(levelName(currentLayer), WKTGeometryEncoder.class, EditableLayerImpl.class));
 		}
 		Layer layerToadd = levels.get(currentLayer);
-		addSE(geom, attributes, levels.get(currentLayer));
+		return addSE(geom, attributes, levels.get(currentLayer));
 	}
 	
 	private ISpatialEntity addSE(Geometry geom, Map<String, String> attributes, Layer layer) throws Exception{
-		//1.Check if the geometry already exist in the layer
-		GeoPipeline pipeline = GeoPipeline.startEqualExactSearch(layer, geom, 0.001);
-		if (pipeline.count() > 0){
-			throw new Exception("Geometry " + geom.toString() + " alrady exsist in layer" + layer.getName());
-		}
-		//we assume that the layer is implementation of EditableLayer  
-		if (!(layer instanceof EditableLayer)){
-			throw new Exception("Layer " + layer.getName() + " is not intace of EditableLayer");
-		}
-		//2.build the spatial records
-		//TODO:think about do it in transaction - it will be nested transaction! 
-		SpatialDatabaseRecord spatialRecord = ((EditableLayer)layer).add(geom);
-		for(Map.Entry<String, String> entry:attributes.entrySet()){
-			spatialRecord.setProperty(entry.getKey(), entry.getValue());
-		}
-		//3.find and update fathers
-		SpatialNode newNode = new SpatialNode(spatialRecord.getGeomNode());
-		if (currentLayer > 0){
-			Layer parantLyaer = levels.get(currentLayer - 1);
-			GeoPipeline parantPipeline = GeoPipeline.startWithinSearch(parantLyaer, geom);
-			for (Node result:parantPipeline.toNodeList()){
-				newNode.addParent(result);
+		//run all this in transaction, we should think a bit more about the transactions.
+		Transaction tx = gdb.beginTx();
+		try{
+			//1.Check if the geometry already exist in the layer
+			GeoPipeline pipeline = GeoPipeline.startEqualExactSearch(layer, geom, 0.001);
+			if (pipeline.count() > 0){
+				throw new Exception("Geometry " + geom.toString() + " alrady exsist in layer" + layer.getName());
 			}
+			//we assume that the layer is implementation of EditableLayer  
+			if (!(layer instanceof EditableLayer)){
+				throw new Exception("Layer " + layer.getName() + " is not intace of EditableLayer");
+			}
+			//2.build the spatial records
+			//TODO:think about do it in transaction - it will be nested transaction! 
+			SpatialDatabaseRecord spatialRecord = ((EditableLayer)layer).add(geom);
+			for(Map.Entry<String, String> entry:attributes.entrySet()){
+				spatialRecord.setProperty(entry.getKey(), entry.getValue());
+			}
+			//3.find and update fathers
+			SpatialNode newNode = new SpatialNode(spatialRecord.getGeomNode());
+			if (currentLayer > 0){
+				Layer parantLyaer = levels.get(currentLayer - 1);
+//				GeoPipeline parantPipeline = GeoPipeline.startWithinSearch(parantLyaer, geom);
+				GeoPipeline parantPipeline = GeoPipeline.startIntersectSearch(parantLyaer, geom);
+				for (Node result:parantPipeline.toNodeList()){
+					newNode.addParent(result);
+				}
+			}
+			
+			//4.find and update siblings
+			Geometry bufferedGeom = geom.buffer(METER * 3);
+			GeoPipeline sibilingPipeline = GeoPipeline.startIntersectSearch(layer, bufferedGeom);
+			for (Node result:sibilingPipeline.toNodeList()){
+				newNode.addSibling(result);
+			}
+			tx.success();
+			return newNode; 
+		}catch(Exception ex){
+			tx.failure();
+			throw ex;
+		}finally{
+			tx.finish();
 		}
 		
-		//4.find and update siblings
-		Geometry bufferedGeom = geom.buffer(METER * 3);
-		GeoPipeline sibilingPipeline = GeoPipeline.startIntersectSearch(layer, bufferedGeom);
-		for (Node result:sibilingPipeline.toNodeList()){
-			newNode.addSibling(result);
-		}
 		
-		return newNode; 
 	}
 	
 	 
