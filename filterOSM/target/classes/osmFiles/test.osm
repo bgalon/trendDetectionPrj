@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="CGImap 0.0.2" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <bounds minlat="51.5013200" minlon="-0.1864200" maxlat="51.5183600" maxlon="-0.1515300"/>
+ <node id="102010" lat="51.5168123" lon="-0.1521665" user="Metanautics fixes" uid="900987" visible="true" version="3" changeset="13419563" timestamp="2012-10-08T21:50:18Z"/>
+ <node id="102011" lat="51.5170596" lon="-0.1524763" user="Kachkaev" uid="231451" visible="true" version="4" changeset="7990414" timestamp="2011-04-28T00:08:17Z"/>
+ <node id="102013" lat="51.5169380" lon="-0.1531720" user="Kachkaev" uid="231451" visible="true" version="4" changeset="7990414" timestamp="2011-04-28T00:08:17Z"/>
+ <node id="102018" lat="51.5178495" lon="-0.1528179" user="Metanautics fixes" uid="900987" visible="true" version="7" changeset="13419563" timestamp="2012-10-08T21:50:18Z"/>
+ <node id="102020" lat="51.5174352" lon="-0.1554056" user="Metanautics fixes" uid="900987" visible="true" version="7" changeset="13420651" timestamp="2012-10-09T01:09:27Z">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="102022" lat="51.5157996" lon="-0.1546572" user="Metanautics fixes" uid="900987" visible="true" version="3" changeset="13469551" timestamp="2012-10-12T17:04:21Z"/>
+ <node id="102025" lat="51.5194499" lon="-0.1563144" user="Metanautics fixes" uid="900987" visible="true" version="7" changeset="13419771" timestamp="2012-10-08T22:08:00Z">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="102028" lat="51.5160610" lon="-0.1564474" user="Metanautics fixes" uid="900987" visible="true" version="4" changeset="13469551" timestamp="2012-10-12T17:04:21Z"/>
+<way id="149056397" user="Paul The Archivist" uid="82783" visible="true" version="1" changeset="10607693" timestamp="2012-02-06T22:10:11Z">
+  <nd ref="102010"/>
+  <nd ref="102011"/>
+  <nd ref="102013"/>
+  <nd ref="102018"/>
+  <tag k="admin_level" v="6"/>
+  <tag k="boundary" v="administrative"/>
+  <tag k="highway" v="primary"/>
+  <tag k="name" v="Kensington Road"/>
+  <tag k="ref" v="A315"/>
+ </way>
+ <way id="107155344" user="pfr" uid="40196" visible="true" version="1" changeset="7761562" timestamp="2011-04-04T06:58:38Z">
+  <nd ref="102011"/>
+  <nd ref="102013"/>
+  <nd ref="102018"/>
+  <nd ref="102020"/>
+  <tag k="admin_level" v="8"/>
+  <tag k="boundary" v="administrative"/>
+  <tag k="highway" v="primary"/>
+  <tag k="left:district" v="Westminster"/>
+  <tag k="name" v="Kensington Road"/>
+  <tag k="ref" v="A315"/>
+  <tag k="right:district" v="Kensington and Chelsea"/>
+ </way>
+ <way id="23602028" user="Derick Rethans" uid="37137" visible="true" version="2" changeset="11100095" timestamp="2012-03-25T21:12:44Z">
+  <nd ref="102011"/>
+  <nd ref="102013"/>
+  <nd ref="102018"/>
+  <nd ref="102020"/>
+  <tag k="boundary" v="administrative"/>
+  <tag k="highway" v="primary"/>
+  <tag k="left:district" v="Westminster"/>
+  <tag k="name" v="Kensington Road"/>
+  <tag k="ref" v="A315"/>
+  <tag k="right:district" v="Kensington and Chelsea"/>
+ </way>
+ <relation id="196238" user="Amaroussi" uid="1016290" visible="true" version="70" changeset="14070254" timestamp="2012-11-28T09:11:50Z">
+  <member type="way" ref="102028" role=""/>
+  <member type="way" ref="107155344" role=""/>
+  <tag k="admin_level" v="6"/>
+  <tag k="boundary" v="administrative"/>
+  <tag k="name" v="City of Westminster"/>
+  <tag k="ons_code" v="00BK"/>
+  <tag k="source:ons_code" v="OS_OpenData_CodePoint Codelist.txt"/>
+  <tag k="type" v="boundary"/>
+  <tag k="wikipedia" v="en:City of Westminster"/>
+ </relation>
+ <relation id="1658109" user="Derick Rethans" uid="37137" visible="true" version="1" changeset="8683069" timestamp="2011-07-10T12:38:45Z">
+  <member type="way" ref="107155344" role="street"/>
+  <member type="way" ref="23602028" role="house"/>
+  <tag k="admin_level" v="8"/>
+  <tag k="boundary" v="administrative"/>
+  <tag k="name" v="Royal Borough of Kensington and Chelsea"/>
+  <tag k="ons_code" v="00AW"/>
+  <tag k="source:ons_code" v="OS_OpenData_CodePoint Codelist.txt"/>
+  <tag k="type" v="boundary"/>
+ </relation>
+ <relation id="1756042" user="eAi" uid="7576" visible="true" version="1" changeset="9331430" timestamp="2011-09-18T11:33:28Z">
+  <member type="way" ref="149056397" role="outer"/>
+  <member type="way" ref="23602028" role="inner"/>
+  <tag k="type" v="multipolygon"/>
+ </relation>
+</osm>

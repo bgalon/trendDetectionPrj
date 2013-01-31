@@ -37,7 +37,13 @@
      <url>http://download.osgeo.org/webdav/geotools/</url>
  </repository>
 </repositories>
-  <dependencies>
+<dependencies>
+	<dependency>
+		<groupId>il.ac.technion.geoinfo</groupId>
+		<artifactId>trend-detection</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<scope>compile</scope>
+	</dependency>
 	<dependency>
 		<groupId>xml-apis</groupId>
 		<artifactId>xml-apis</artifactId>
@@ -49,14 +55,9 @@
   		<version>1.8</version>
   	</dependency>
   	<dependency>
-            <groupId>org.geotools</groupId>
-            <artifactId>gt-shapefile</artifactId>
-            <version>${geotools.version}</version>
-        </dependency>
-          	<!-- <dependency>
-  		<groupId>trendDetectionPrj</groupId>
-  		<artifactId>trendDetectionPrj</artifactId>
-  		<version>0.0.1-SNAPSHOT</version>
-  	</dependency> -->
+        <groupId>org.geotools</groupId>
+        <artifactId>gt-shapefile</artifactId>
+        <version>${geotools.version}</version>
+    </dependency>
   </dependencies>
 </project>
