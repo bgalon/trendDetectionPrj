@@ -40,7 +40,6 @@ public class ShapeParser {
 			public List<String> getAttributeNames() {
 				return Arrays.asList(new String[] { "LSOA11CD", "LSOA11NM", "MSOA11NM" });
 			}
-
 		},
 		OA {
 			// @Override
