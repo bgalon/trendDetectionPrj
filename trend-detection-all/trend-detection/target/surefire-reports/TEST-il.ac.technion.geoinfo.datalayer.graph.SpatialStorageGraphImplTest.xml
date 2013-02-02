@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite failures="0" time="43.547" errors="2" skipped="0" tests="2" name="il.ac.technion.geoinfo.datalayer.graph.SpatialStorageGraphImplTest">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.7.0_03\jre\bin"/>
+    <property name="java.vm.version" value="22.1-b02"/>
+    <property name="user.country.format" value="IL"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=";"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.script" value=""/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value="Service Pack 1"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="C:\Users\Ben\git\trendDetectionPrj\trend-detection-all"/>
+    <property name="java.runtime.version" value="1.7.0_03-b05"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.7.0_03\jre\lib\endorsed"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.io.tmpdir" value="C:\Users\Ben\AppData\Local\Temp\"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.variant" value=""/>
+    <property name="os.name" value="Windows 7"/>
+    <property name="classworlds.conf" value="C:\Users\Ben\Documents\trendDetection\.metadata\.plugins\org.eclipse.m2e.core\launches\m2conf1509147850225807232.tmp"/>
+    <property name="sun.jnu.encoding" value="Cp1255"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.7.0_03\jre\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\PROGRAM FILES\COMMON FILES\MICROSOFT SHARED\WINDOWS LIVE;C:\PROGRAM FILES (X86)\COMMON FILES\MICROSOFT SHARED\WINDOWS LIVE;C:\WINDOWS\SYSTEM32;C:\WINDOWS;C:\WINDOWS\SYSTEM32\WBEM;C:\WINDOWS\SYSTEM32\WINDOWSPOWERSHELL\V1.0\;C:\PROGRAM FILES (X86)\COMMON FILES\LENOVO;C:\PROGRAM FILES (X86)\COMMON FILES\ULEAD SYSTEMS\MPEG;C:\PROGRAM FILES (X86)\WINDOWS LIVE\SHARED;C:\SWTOOLS\READYAPPS;C:\PROGRAM FILES (X86)\INTEL\SERVICES\IPT\;C:\PROGRAM FILES (X86)\SYMANTEC\VIP ACCESS CLIENT\;C:\PROGRAM FILES\COMMON FILES\LENOVO;C:\PROGRAM FILES (X86)\MICROSOFT SQL SERVER\90\TOOLS\BINN\;C:\PROGRAM FILES\MIKTEX 2.9\MIKTEX\BIN\X64\;C:\PYTHON27\;C:\Program Files\ThinkPad\Bluetooth Software\;C:\Program Files\ThinkPad\Bluetooth Software\syswow64;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files (x86)\Git\cmd;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;."/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="51.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="6.1"/>
+    <property name="user.home" value="C:\Users\Ben"/>
+    <property name="user.timezone" value="Asia/Jerusalem"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="java.specification.version" value="1.7"/>
+    <property name="file.encoding" value="Cp1255"/>
+    <property name="user.name" value="Ben"/>
+    <property name="java.class.path" value="/C:/Users/Ben/.eclipse/org.eclipse.platform_4.2.0_1764457576/configuration/org.eclipse.osgi/bundles/924/1/.cp/jars/plexus-classworlds-2.4.jar"/>
+    <property name="java.vm.specification.version" value="1.7"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk1.7.0_03\jre"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -B install"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="en"/>
+    <property name="user.language.format" value="he"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.7.0_03"/>
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.7.0_03\jre\lib\ext;C:\Windows\Sun\Java\lib\ext"/>
+    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.7.0_03\jre\lib\resources.jar;C:\Program Files\Java\jdk1.7.0_03\jre\lib\rt.jar;C:\Program Files\Java\jdk1.7.0_03\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.7.0_03\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.7.0_03\jre\lib\jce.jar;C:\Program Files\Java\jdk1.7.0_03\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.7.0_03\jre\classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="C:\Users\Ben\git\trendDetectionPrj\trend-detection-all\EMBEDDED"/>
+    <property name="file.separator" value="\"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.desktop" value="windows"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+  </properties>
+  <testcase time="22.276" classname="il.ac.technion.geoinfo.datalayer.graph.SpatialStorageGraphImplTest" name="testAddSpatialEntity">
+    <error message="java.net.ConnectException: Connection timed out: connect" type="com.sun.jersey.api.client.ClientHandlerException">com.sun.jersey.api.client.ClientHandlerException: java.net.ConnectException: Connection timed out: connect
+	at com.sun.jersey.client.urlconnection.URLConnectionClientHandler.handle(URLConnectionClientHandler.java:131)
+	at org.neo4j.rest.graphdb.UserAgent$1.handle(UserAgent.java:68)
+	at com.sun.jersey.api.client.Client.handle(Client.java:616)
+	at com.sun.jersey.api.client.WebResource.handle(WebResource.java:559)
+	at com.sun.jersey.api.client.WebResource.access$200(WebResource.java:72)
+	at com.sun.jersey.api.client.WebResource$Builder.get(WebResource.java:454)
+	at org.neo4j.rest.graphdb.ExecutingRestRequest.get(ExecutingRestRequest.java:112)
+	at org.neo4j.rest.graphdb.ExecutingRestAPI.getReferenceNode(ExecutingRestAPI.java:263)
+	at org.neo4j.rest.graphdb.RestAPIFacade.getReferenceNode(RestAPIFacade.java:107)
+	at org.neo4j.rest.graphdb.RestGraphDatabase.getReferenceNode(RestGraphDatabase.java:68)
+	at org.neo4j.gis.spatial.SpatialDatabaseService.getSpatialRoot(SpatialDatabaseService.java:86)
+	at org.neo4j.gis.spatial.SpatialDatabaseService.getLayer(SpatialDatabaseService.java:107)
+	at org.neo4j.gis.spatial.SpatialDatabaseService.containsLayer(SpatialDatabaseService.java:245)
+	at il.ac.technion.geoinfo.datalayer.graph.SpatialStorageGraphImpl.levelsInit(SpatialStorageGraphImpl.java:51)
+	at il.ac.technion.geoinfo.datalayer.graph.SpatialStorageGraphImpl.&lt;init&gt;(SpatialStorageGraphImpl.java:45)
+	at il.ac.technion.geoinfo.datalayer.graph.SSNgraphImpl.&lt;init&gt;(SSNgraphImpl.java:30)
+	at il.ac.technion.geoinfo.datalayer.graph.SpatialStorageGraphImplTest.testAddSpatialEntity(SpatialStorageGraphImplTest.java:74)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:20)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:28)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:31)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:76)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:53)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:123)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:104)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:164)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:110)
+	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
+	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
+Caused by: java.net.ConnectException: Connection timed out: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:75)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:339)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:200)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:182)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:157)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:391)
+	at java.net.Socket.connect(Socket.java:579)
+	at sun.net.NetworkClient.doConnect(NetworkClient.java:175)
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:388)
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:483)
+	at sun.net.www.http.HttpClient.&lt;init&gt;(HttpClient.java:213)
+	at sun.net.www.http.HttpClient.New(HttpClient.java:300)
+	at sun.net.www.http.HttpClient.New(HttpClient.java:316)
+	at sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:992)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:928)
+	at sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:846)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1296)
+	at java.net.HttpURLConnection.getResponseCode(HttpURLConnection.java:468)
+	at com.sun.jersey.client.urlconnection.URLConnectionClientHandler._invoke(URLConnectionClientHandler.java:218)
+	at com.sun.jersey.client.urlconnection.URLConnectionClientHandler.handle(URLConnectionClientHandler.java:129)
+	... 46 more
+</error>
+  </testcase>
+  <testcase time="21.13" classname="il.ac.technion.geoinfo.datalayer.graph.SpatialStorageGraphImplTest" name="test1">
+    <error message="java.net.ConnectException: Connection timed out: connect" type="com.sun.jersey.api.client.ClientHandlerException">com.sun.jersey.api.client.ClientHandlerException: java.net.ConnectException: Connection timed out: connect
+	at com.sun.jersey.client.urlconnection.URLConnectionClientHandler.handle(URLConnectionClientHandler.java:131)
+	at org.neo4j.rest.graphdb.UserAgent$1.handle(UserAgent.java:68)
+	at com.sun.jersey.api.client.Client.handle(Client.java:616)
+	at com.sun.jersey.api.client.WebResource.handle(WebResource.java:559)
+	at com.sun.jersey.api.client.WebResource.access$200(WebResource.java:72)
+	at com.sun.jersey.api.client.WebResource$Builder.get(WebResource.java:454)
+	at org.neo4j.rest.graphdb.ExecutingRestRequest.get(ExecutingRestRequest.java:112)
+	at org.neo4j.rest.graphdb.ExecutingRestAPI.getReferenceNode(ExecutingRestAPI.java:263)
+	at org.neo4j.rest.graphdb.RestAPIFacade.getReferenceNode(RestAPIFacade.java:107)
+	at org.neo4j.rest.graphdb.RestGraphDatabase.getReferenceNode(RestGraphDatabase.java:68)
+	at il.ac.technion.geoinfo.datalayer.graph.SpatialStorageGraphImplTest.test1(SpatialStorageGraphImplTest.java:53)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:20)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:28)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:31)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:76)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:53)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:123)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:104)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:601)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:164)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:110)
+	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
+	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
+Caused by: java.net.ConnectException: Connection timed out: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:75)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:339)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:200)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:182)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:157)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:391)
+	at java.net.Socket.connect(Socket.java:579)
+	at sun.net.NetworkClient.doConnect(NetworkClient.java:175)
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:388)
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:483)
+	at sun.net.www.http.HttpClient.&lt;init&gt;(HttpClient.java:213)
+	at sun.net.www.http.HttpClient.New(HttpClient.java:300)
+	at sun.net.www.http.HttpClient.New(HttpClient.java:316)
+	at sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:992)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:928)
+	at sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:846)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1296)
+	at java.net.HttpURLConnection.getResponseCode(HttpURLConnection.java:468)
+	at com.sun.jersey.client.urlconnection.URLConnectionClientHandler._invoke(URLConnectionClientHandler.java:218)
+	at com.sun.jersey.client.urlconnection.URLConnectionClientHandler.handle(URLConnectionClientHandler.java:129)
+	... 40 more
+</error>
+  </testcase>
+</testsuite>
