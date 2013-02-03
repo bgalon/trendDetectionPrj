@@ -37,8 +37,8 @@ public class SpatialStorageGraphImplTest {
 	
 	@Before
 	public void createTestDb(){
-//		testDb = new ImpermanentGraphDatabase();
-		testDb = new RestGraphDatabase("http://ec2-176-34-83-186.eu-west-1.compute.amazonaws.com:7474/db/data");
+		testDb = new ImpermanentGraphDatabase();
+//		testDb = new RestGraphDatabase("http://ec2-176-34-83-186.eu-west-1.compute.amazonaws.com:7474/db/data");
 	}
 	
 	@After
@@ -46,22 +46,22 @@ public class SpatialStorageGraphImplTest {
 		testDb.shutdown();
 	}
 	
-	@Test
-	public void test1(){
-		Transaction tx = testDb.beginTx();
-		try{
-			Node root = testDb.getReferenceNode();
-			Node n1 = testDb.createNode();
-			Node n2 = testDb.createNode();
-			root.createRelationshipTo(n1, SpatialRealtion.within);
-			n1.createRelationshipTo(n2, SpatialRealtion.within);
-			tx.success();
-		}finally{
-			tx.finish();
-		}
-		
-	}
-	
+//	@Test
+//	public void test1(){
+//		Transaction tx = testDb.beginTx();
+//		try{
+//			Node root = testDb.getReferenceNode();
+//			Node n1 = testDb.createNode();
+//			Node n2 = testDb.createNode();
+//			root.createRelationshipTo(n1, SpatialRealtion.within);
+//			n1.createRelationshipTo(n2, SpatialRealtion.within);
+//			tx.success();
+//		}finally{
+//			tx.finish();
+//		}
+//		
+//	}
+//	
 
 	@Test
 	public void testAddSpatialEntity() throws Exception {

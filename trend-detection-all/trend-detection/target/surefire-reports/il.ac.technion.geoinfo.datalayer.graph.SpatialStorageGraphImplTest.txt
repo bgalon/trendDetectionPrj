@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: il.ac.technion.geoinfo.datalayer.graph.SpatialStorageGraphImplTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 43.543 sec <<< FAILURE!
-testAddSpatialEntity(il.ac.technion.geoinfo.datalayer.graph.SpatialStorageGraphImplTest)  Time elapsed: 22.276 sec  <<< ERROR!
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 44.109 sec <<< FAILURE!
+testAddSpatialEntity(il.ac.technion.geoinfo.datalayer.graph.SpatialStorageGraphImplTest)  Time elapsed: 22.535 sec  <<< ERROR!
 com.sun.jersey.api.client.ClientHandlerException: java.net.ConnectException: Connection timed out: connect
 	at com.sun.jersey.client.urlconnection.URLConnectionClientHandler.handle(URLConnectionClientHandler.java:131)
 	at org.neo4j.rest.graphdb.UserAgent$1.handle(UserAgent.java:68)
@@ -74,7 +74,7 @@ Caused by: java.net.ConnectException: Connection timed out: connect
 	at com.sun.jersey.client.urlconnection.URLConnectionClientHandler._invoke(URLConnectionClientHandler.java:218)
 	at com.sun.jersey.client.urlconnection.URLConnectionClientHandler.handle(URLConnectionClientHandler.java:129)
 	... 46 more
-test1(il.ac.technion.geoinfo.datalayer.graph.SpatialStorageGraphImplTest)  Time elapsed: 21.13 sec  <<< ERROR!
+test1(il.ac.technion.geoinfo.datalayer.graph.SpatialStorageGraphImplTest)  Time elapsed: 21.331 sec  <<< ERROR!
 com.sun.jersey.api.client.ClientHandlerException: java.net.ConnectException: Connection timed out: connect
 	at com.sun.jersey.client.urlconnection.URLConnectionClientHandler.handle(URLConnectionClientHandler.java:131)
 	at org.neo4j.rest.graphdb.UserAgent$1.handle(UserAgent.java:68)

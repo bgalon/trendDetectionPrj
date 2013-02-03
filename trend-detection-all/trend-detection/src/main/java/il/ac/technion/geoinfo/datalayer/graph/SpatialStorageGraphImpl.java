@@ -141,10 +141,10 @@ public class SpatialStorageGraphImpl implements SpatialStorage {
 	}
 	
 	
-	public Collection<SpatialNode> splitLineStrings(Geometry newGeom){
-		
-	}
-	
+//	public Collection<SpatialNode> splitLineStrings(Geometry newGeom){
+//		
+//	}
+//	
 	
 	
 	//***************************************************************************
