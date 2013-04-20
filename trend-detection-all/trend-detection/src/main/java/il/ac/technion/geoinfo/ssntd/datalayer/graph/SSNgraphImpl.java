@@ -1,9 +1,8 @@
-package il.ac.technion.geoinfo.datalayer.graph;
+package il.ac.technion.geoinfo.ssntd.datalayer.graph;
 
-import il.ac.technion.geoinfo.datalayer.SSN;
-import il.ac.technion.geoinfo.datalayer.SocialStorage;
-import il.ac.technion.geoinfo.datalayer.SpatialStorage;
-
+import il.ac.technion.geoinfo.ssntd.datalayer.SSN;
+import il.ac.technion.geoinfo.ssntd.datalayer.SocialStorage;
+import il.ac.technion.geoinfo.ssntd.datalayer.SpatialStorage;
 import org.neo4j.collections.graphdb.impl.EmbeddedGraphDatabase;
 import org.neo4j.graphdb.GraphDatabaseService;
 

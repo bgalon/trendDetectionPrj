@@ -1,4 +1,4 @@
-package il.ac.technion.geoinfo.domain.graphImpl;
+package il.ac.technion.geoinfo.ssntd.domain.graphImpl;
 
 import org.neo4j.graphdb.RelationshipType;
 

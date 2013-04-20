@@ -1,4 +1,4 @@
-package il.ac.technion.geoinfo.domain.graphImpl;
+package il.ac.technion.geoinfo.ssntd.domain.graphImpl;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,7 +12,7 @@ import org.neo4j.graphdb.RelationshipType;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.io.ParseException;
 
-import il.ac.technion.geoinfo.domain.interfaces.ISpatialEntity;
+import il.ac.technion.geoinfo.ssntd.domain.interfaces.ISpatialEntity;
 
 public class SpatialNode extends NodeWrapper implements ISpatialEntity {
 

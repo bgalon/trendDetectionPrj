@@ -1,4 +1,4 @@
-package il.ac.technion.geoinfo.datalayer;
+package il.ac.technion.geoinfo.ssntd.datalayer;
 
 import java.util.Map;
 

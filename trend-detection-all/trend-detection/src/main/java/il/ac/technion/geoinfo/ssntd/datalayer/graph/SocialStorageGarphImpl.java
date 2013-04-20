@@ -1,10 +1,9 @@
-package il.ac.technion.geoinfo.datalayer.graph;
+package il.ac.technion.geoinfo.ssntd.datalayer.graph;
 
-import java.util.Map;
-
+import il.ac.technion.geoinfo.ssntd.datalayer.SocialStorage;
 import org.neo4j.graphdb.GraphDatabaseService;
 
-import il.ac.technion.geoinfo.datalayer.SocialStorage;
+import java.util.Map;
 
 public class SocialStorageGarphImpl implements SocialStorage {
 

@@ -1,7 +1,7 @@
 package main;
 
 import filters.MinimalObjectsCreator;
-import il.ac.technion.geoinfo.datalayer.SpatialStorage;
+import il.ac.technion.geoinfo.ssntd.datalayer.SpatialStorage;
 
 import java.io.File;
 import java.io.IOException;

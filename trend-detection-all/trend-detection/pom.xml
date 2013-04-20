@@ -10,6 +10,9 @@
    <properties>
     <neo4j.version>1.8.1</neo4j.version>
     <neo4j.graphcollections.version>0.5-SNAPSHOT</neo4j.graphcollections.version>
+    <neo4j.spatial.version>0.10-SNAPSHOT</neo4j.spatial.version>
+
+    <spring.version>3.1.2.RELEASE</spring.version>
    </properties>
   
   <repositories>
@@ -91,7 +94,7 @@
      <dependency>
     	<groupId>org.neo4j</groupId>
     	<artifactId>neo4j-rest-graphdb</artifactId>
-    	<version>1.8</version>
+    	<version>${neo4j.version}</version>
 	</dependency>
     <dependency>
             <groupId>org.neo4j</groupId>
@@ -133,11 +136,11 @@
        </dependency>
     
     
-	<dependency> 
-	  <groupId>org.neo4j</groupId>
-	  <artifactId>neo4j-spatial</artifactId>
-	  <version>0.10-SNAPSHOT</version>
-	</dependency>
+        <dependency>
+          <groupId>org.neo4j</groupId>
+          <artifactId>neo4j-spatial</artifactId>
+          <version>${neo4j.spatial.version}</version>
+        </dependency>
 	
 	<!-- Not sure if needed check error form geoPipeline -->
 	<dependency>
@@ -147,6 +150,19 @@
 		<type>jar</type>
         <scope>provided</scope>
 	</dependency>
+
+    <!--Spring-->
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-test</artifactId>
+        <version>${spring.version}</version>
+    </dependency>
 	
 	<!-- JTS -->
 	<dependency>
@@ -161,6 +177,11 @@
       <version>4.8.1</version>
       <scope>test</scope>
     </dependency>
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-test</artifactId>
+          <version>3.1.2.RELEASE</version>
+      </dependency>
   </dependencies>
   
  

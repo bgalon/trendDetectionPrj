@@ -1,4 +1,4 @@
-package il.ac.technion.geoinfo.domain.interfaces;
+package il.ac.technion.geoinfo.ssntd.domain.interfaces;
 
 import java.util.Collection;
 
