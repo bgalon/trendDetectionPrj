@@ -2,8 +2,8 @@ package il.ac.technion.geoinfo.ssntd.datalayer.graph.loaders;
 
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.io.ParseException;
-import org.neo4j.gis.spatial.Layer;
-import org.neo4j.gis.spatial.SpatialDatabaseRecord;
+import il.ac.technion.geoinfo.ssntd.domain.interfaces.ISpatialEntity;
+import org.neo4j.gis.spatial.EditableLayer;
 
 import java.util.Collection;
 import java.util.Map;
@@ -17,6 +17,6 @@ import java.util.Map;
  */
 public interface ILoader {
 
-    public Collection<SpatialDatabaseRecord> loadToLevel(Layer layer, Geometry geom, Map<String,String> attributes) throws ParseException;
+    public Collection<ISpatialEntity> loadToLevel(EditableLayer layer, Geometry geom, Map<String,String> attributes) throws ParseException;
 
 }

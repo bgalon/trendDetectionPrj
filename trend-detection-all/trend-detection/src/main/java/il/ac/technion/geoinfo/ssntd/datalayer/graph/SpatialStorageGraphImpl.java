@@ -10,7 +10,6 @@ import il.ac.technion.geoinfo.ssntd.domain.interfaces.ISpatialEntity;
 import org.neo4j.gis.spatial.*;
 import org.neo4j.gis.spatial.pipes.GeoPipeline;
 import org.neo4j.graphdb.GraphDatabaseService;
-import org.neo4j.graphdb.Node;
 import org.neo4j.graphdb.Transaction;
 
 import java.util.ArrayList;
@@ -80,26 +79,34 @@ public class SpatialStorageGraphImpl implements SpatialStorage, IConstants {
 			if (!(layer instanceof EditableLayer)){
 				throw new Exception("Layer " + layer.getName() + " is not intace of EditableLayer");
 			}
+            EditableLayer editableLayerlayer = (EditableLayer)layer;
 			//2. split the entity by a given set of roles and of course update the database
             //this stage is update this level and build the sibling relationships
             //and 3.build the spatial records
             //TODO: add strategy change here
-            Collection<SpatialDatabaseRecord> toAddCol  = defaultLoader.loadToLevel(layer, geom, attributes);
+            Collection<ISpatialEntity> toAddCol = null;
+            if (geom.getGeometryType().equalsIgnoreCase("LineString")) {
+                toAddCol = roadLoader.loadToLevel(editableLayerlayer, geom, attributes);
+            }else{
+                toAddCol = defaultLoader.loadToLevel(editableLayerlayer, geom, attributes);
+            }
+            if (toAddCol == null){
+                return null;
+            }
 
             //4.create spatial entity, find and update children
             List<ISpatialEntity> resultList = new ArrayList<ISpatialEntity>();
-            for(SpatialDatabaseRecord sr : toAddCol) {
-                SpatialNode newNode = new SpatialNode(sr.getGeomNode());
+            for(ISpatialEntity se : toAddCol) {
+
                 if (currentLayer > 0){
                     Layer childernLayer = levels.get(currentLayer - 1);
                     GeoPipeline parantPipeline = GeoPipeline.startContainSearch(childernLayer, geom);
-    //				GeoPipeline parantPipeline = GeoPipeline.startIntersectSearch(childernLayer, geom);
                     //TODO: test for case there are no results
-                    for (Node child:parantPipeline.toNodeList()){
-                        newNode.addChild(child);
+                    for (SpatialDatabaseRecord child:parantPipeline.toSpatialDatabaseRecordList()){
+                        se.addChild(new SpatialNode(child));
                     }
                 }
-                resultList.add(newNode);
+                resultList.add(se);
             }
 
 			tx.success();

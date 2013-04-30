@@ -1,16 +1,21 @@
 package il.ac.technion.geoinfo.ssntd.domain.interfaces;
 
+import com.vividsolutions.jts.geom.Geometry;
+
 import java.util.Collection;
 
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.io.ParseException;
-
-public interface ISpatialEntity {
-	Geometry GetGeometry() throws ParseException;
+public interface ISpatialEntity extends IEntity{
+	Geometry getGeometry();
 	
 	int getLayer();
-	
+
+    void addParent(ISpatialEntity parent);
+    void addChild(ISpatialEntity child);
+    void addSibling(ISpatialEntity sibling);
+    void addConnection(ISpatialEntity connected);
+
 	Collection<ISpatialEntity> getParants();
 	Collection<ISpatialEntity> getSiblings();
 	Collection<ISpatialEntity> getChildren();
+    Collection<ISpatialEntity> getConnected();
 }

@@ -1,42 +1,70 @@
 package il.ac.technion.geoinfo.ssntd.domain.graphImpl;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
+import com.vividsolutions.jts.geom.Geometry;
+import il.ac.technion.geoinfo.ssntd.domain.interfaces.ISpatialEntity;
+import org.neo4j.gis.spatial.SpatialDatabaseRecord;
 import org.neo4j.graphdb.Direction;
 import org.neo4j.graphdb.Node;
 import org.neo4j.graphdb.Relationship;
 import org.neo4j.graphdb.RelationshipType;
 
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.io.ParseException;
-
-import il.ac.technion.geoinfo.ssntd.domain.interfaces.ISpatialEntity;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 public class SpatialNode extends NodeWrapper implements ISpatialEntity {
 
-	public SpatialNode(Node theUnderlaying) {
-		super(theUnderlaying);
-		// TODO Auto-generated constructor stub
-	}
-	
-	public void addParent(Node parent){
-		parent.createRelationshipTo(underlayingNode, SpatialRealtion.within);
-	}
-	
-	public void addChild(Node child){
-		underlayingNode.createRelationshipTo(child, SpatialRealtion.within);
-	}
-	
-	public void addSibling(Node sibling){
-		sibling.createRelationshipTo(underlayingNode, SpatialRealtion.siblings);
+    private final SpatialDatabaseRecord underlayingSDBR;
+
+    public SpatialNode(Node theUnderlaying) {
+        super(theUnderlaying);
+        underlayingSDBR = null;
+    }
+
+    public SpatialNode(SpatialDatabaseRecord theUnderlaying) {
+		super(theUnderlaying.getGeomNode());
+        underlayingSDBR = theUnderlaying;
 	}
 
+    @Override
+	public void addParent(ISpatialEntity parent){
+        Node node = interfaceToNode(parent);
+        node.createRelationshipTo(underlayingNode, SpatialRealtion.within);
+	}
+
+    @Override
+	public void addChild(ISpatialEntity child){
+        Node node = interfaceToNode(child);
+		underlayingNode.createRelationshipTo(node, SpatialRealtion.within);
+	}
+
+    @Override
+	public void addSibling(ISpatialEntity sibling){
+        Node node = interfaceToNode(sibling);
+        node.createRelationshipTo(underlayingNode, SpatialRealtion.siblings);
+	}
+
+    @Override
+    public void addConnection(ISpatialEntity connected){
+        Node node = interfaceToNode(connected);
+        underlayingNode.createRelationshipTo(node,SpatialRealtion.connection);
+    }
+
+    private Node interfaceToNode(ISpatialEntity iSpatialEntity){
+        //we assume that int the only implementation for ISpatialEntity is SpatialNose
+        //in the graph environment
+        return ((SpatialNode)iSpatialEntity).underlayingNode;
+    }
+
 	@Override
-	public Geometry GetGeometry() throws ParseException {
-		// TODO Auto-generated method stub
-		return null;
+	public Geometry getGeometry(){
+		if(underlayingSDBR != null){
+            return underlayingSDBR.getGeometry();
+        }
+        else{
+            //TODO: another solution need to be implemented here
+            return null;
+        }
 	}
 
 	@Override
@@ -59,8 +87,29 @@ public class SpatialNode extends NodeWrapper implements ISpatialEntity {
 	public Collection<ISpatialEntity> getChildren() {
 		return nodeCollToISEColl(SpatialRealtion.within, Direction.OUTGOING);
 	}
-	
-	private Collection<ISpatialEntity> nodeCollToISEColl(RelationshipType type, Direction dir){
+
+    @Override
+    public Collection<ISpatialEntity> getConnected() {
+        return nodeCollToISEColl(SpatialRealtion.connection, Direction.OUTGOING);
+    }
+
+
+    @Override
+    public boolean hasProperty(String key) {
+        return underlayingNode.hasProperty(key);
+    }
+
+    @Override
+    public Object getProperty(String key) {
+        return underlayingNode.getProperty(key);
+    }
+
+    @Override
+    public void setProperty(String key, Object value) {
+        underlayingNode.setProperty(key, value);
+    }
+
+    private Collection<ISpatialEntity> nodeCollToISEColl(RelationshipType type, Direction dir){
 		List<ISpatialEntity> returnedColl = new ArrayList<ISpatialEntity>();
 		Iterable<Relationship> result = underlayingNode.getRelationships(type, dir);
 		for (Relationship relation:result){

@@ -1,5 +1,5 @@
 package il.ac.technion.geoinfo.ssntd.domain.interfaces;
 
-public interface IUser {
+public interface IUser extends IEntity{
 	String getId();
 }

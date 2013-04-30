@@ -1,6 +1,8 @@
 package il.ac.technion.geoinfo.ssntd.datalayer.graph.loaders;
 
 import com.vividsolutions.jts.geom.Geometry;
+import il.ac.technion.geoinfo.ssntd.domain.graphImpl.SpatialNode;
+import il.ac.technion.geoinfo.ssntd.domain.interfaces.ISpatialEntity;
 import org.neo4j.gis.spatial.EditableLayer;
 import org.neo4j.gis.spatial.SpatialDatabaseRecord;
 
@@ -16,11 +18,11 @@ import java.util.Map;
 abstract class AbstractLoader implements ILoader {
 
 
-    protected SpatialDatabaseRecord addSR(EditableLayer layer, Geometry geom, Map<String, String> attributes){
-        SpatialDatabaseRecord spatialRecord = ((EditableLayer)layer).add(geom);
+    protected ISpatialEntity addSR(EditableLayer layer, Geometry geom, Map<String, String> attributes){
+        SpatialDatabaseRecord spatialRecord = layer.add(geom);
             for(Map.Entry<String, String> entry:attributes.entrySet()){
                 spatialRecord.setProperty(entry.getKey(), entry.getValue());
             }
-        return  spatialRecord;
+        return new SpatialNode(spatialRecord);
     }
 }
