@@ -1,9 +1,6 @@
 package filters;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public final class OSMObjects {
 	// TODO: change to dependency injection
@@ -45,31 +42,34 @@ public final class OSMObjects {
 
 	public static class ComplexTagContainer extends TagContainer {
 
-		private final Map<String, Integer> nodesIdxs = new HashMap<>();
-		private List<TagContainer> nodes = new LinkedList<>();
+        // For saving order between nodes (boundary Creation)
+		private final Map<String, Set<Integer>> nodesIdxs = new HashMap<>();
+		private List<TagContainer> nodes = new ArrayList<>();
 
 		public ComplexTagContainer(String id) {
 			super(id);
 		}
 
-		public void setNodes(List<TagContainer> nodes) {
-			nodes.clear();
-			nodesIdxs.clear();
+        public void addNode(TagContainer node){
+            nodes.add(node);
+            if (!nodesIdxs.containsKey(node.getId())){
+                nodesIdxs.put(node.getId(), new HashSet<Integer>());
+            }
+            nodesIdxs.get(node.getId()).add(nodes.size() - 1);
+        }
 
-			this.nodes = nodes;
-			int i = 0;
-			for (TagContainer node : nodes) {
-				nodesIdxs.put(node.id, i++);
-			}
-		}
+        public Collection<TagContainer> getNodesById(String id){
+            List<TagContainer> result = new ArrayList<>();
+            for(Integer i:nodesIdxs.get(id)){
+                result.add(nodes.get(i));
+            }
+            return result;
+        }
 
 		public List<TagContainer> getNodes() {
 			return this.nodes;
 		}
 
-		public Map<String, Integer> getNodexIdxs() {
-			return this.nodesIdxs;
-		}
 	}
 
 	public static class Way extends ComplexTagContainer {

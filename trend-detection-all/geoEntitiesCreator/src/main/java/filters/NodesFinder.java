@@ -1,14 +1,13 @@
 package filters;
 
-import java.util.Map;
-import java.util.Set;
-
+import filters.OSMObjects.ComplexTagContainer;
+import filters.OSMObjects.TagContainer;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import filters.OSMObjects.ComplexTagContainer;
-import filters.OSMObjects.TagContainer;
+import java.util.Map;
+import java.util.Set;
 
 class NodesFinder extends DefaultHandler {
 
@@ -31,11 +30,10 @@ class NodesFinder extends DefaultHandler {
 
 	private void updatePolygons(Attributes atts, String id) {
 		for (ComplexTagContainer ctc : nodes.get(id)) {
-			if (!ctc.getNodexIdxs().containsKey(id))
-				throw new RuntimeException("couldn't find the id " + id);
-			TagContainer toUpdate = ctc.getNodes().get(ctc.getNodexIdxs().get(id));
-			toUpdate.getTags().put("lat", atts.getValue("lat"));
-			toUpdate.getTags().put("lon", atts.getValue("lon"));
+            for(TagContainer toUpdate:ctc.getNodesById(id)){
+			    toUpdate.getTags().put("lat", atts.getValue("lat"));
+			    toUpdate.getTags().put("lon", atts.getValue("lon"));
+            }
 		}
 	}
 }

@@ -1,17 +1,16 @@
 package filters;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
+import filters.OSMObjects.ComplexTagContainer;
+import filters.OSMObjects.TagContainer;
+import filters.OSMObjects.Way;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import filters.OSMObjects.ComplexTagContainer;
-import filters.OSMObjects.TagContainer;
-import filters.OSMObjects.Way;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 class WaysFinder extends DefaultHandler {
 
@@ -50,7 +49,7 @@ class WaysFinder extends DefaultHandler {
 			@Override
 			public void handleStartElement(ElementState state, Attributes atts) {
 				state.inWay = true;
-				state.nodes.clear();
+//				state.nodes.clear();
 				state.curr = new Way(atts.getValue("id"));
 			}
 
@@ -58,7 +57,7 @@ class WaysFinder extends DefaultHandler {
 			public void handleEndElement(ElementState state,
 					Map<String, Set<ComplexTagContainer>> nodes) {
 				state.inWay = false;
-				nodes.putAll(state.nodes);
+				nodes.putAll(state.nodes2ways);
 			}
 		},
 		ND {
@@ -67,10 +66,10 @@ class WaysFinder extends DefaultHandler {
 				if (state.inWay) {
 					String ref = atts.getValue("ref");
 					if (ref != null) {
-						state.curr.getNodes().add(new TagContainer(ref));
-						if (!state.nodes.containsKey(ref))
-							state.nodes.put(ref, new HashSet<ComplexTagContainer>());
-						state.nodes.get(ref).add(state.curr);
+						state.curr.addNode(new TagContainer(ref));
+						if (!state.nodes2ways.containsKey(ref))
+							state.nodes2ways.put(ref, new HashSet<ComplexTagContainer>());
+						state.nodes2ways.get(ref).add(state.curr);
 					}
 				}
 			}
@@ -96,6 +95,6 @@ class WaysFinder extends DefaultHandler {
 	private class ElementState {
 		public boolean inWay = false, inRelation = false;
 		public ComplexTagContainer curr = null;
-		public final Map<String, Set<ComplexTagContainer>> nodes = new HashMap<>();
+		public final Map<String, Set<ComplexTagContainer>> nodes2ways = new HashMap<>();
 	}
 }

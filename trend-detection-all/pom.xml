@@ -4,6 +4,10 @@
   <artifactId>trend-detection-all</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
+
+    <properties>
+        <geotools.version>8.5</geotools.version>
+    </properties>
   
    <build>
   	<plugins>
@@ -19,54 +23,28 @@
   	</plugins>
   </build>
   
-  <repositories>
-   	<repository>
-	      <id>neo4j-public-repository</id>
-	      <name>Publically available Maven 2 repository for Neo4j</name>
-	      <url>http://m2.neo4j.org</url>
-	      <snapshots>
-          	<enabled>true</enabled>
-	      </snapshots>
-	      <releases>
-        	<enabled>true</enabled>
-      	  </releases>
-	  </repository>	  
-	  
-<!--  	  <repository>
-      <id>neo4j-snapshot-repository</id>
-      <name>Maven 2 snapshot repository for Neo4j</name>
-      <url>http://m2.neo4j.org/content/repositories/snapshots</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-    </repository>
-    <repository>
-      <id>neo4j-release-repository</id>
-      <name>Maven 2 release repository for Neo4j</name>
-      <url>http://m2.neo4j.org/content/repositories/releases</url>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-    </repository>
-     
-    <repository>
-      <id>tinkerpop-snapshot-repository</id>
-      <name>Tinkerpop snapshot repo</name>
-      <url>http://tinkerpop.com/maven2</url>
-    </repository>
-    -->
-
-  </repositories>
-  
   <modules>
-  	<module>trend-detection</module>
+  	<module>ssntd</module>
   	<module>geoEntitiesCreator</module>
   </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>il.ac.technion.geoinfo</groupId>
+                <artifactId>ssntd</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>il.ac.technion.geoinfo</groupId>
+                <artifactId>geoEntitiesCreator</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+
+
+
+        </dependencies>
+    </dependencyManagement>
   
 </project>
