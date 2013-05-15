@@ -1,0 +1,167 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>ssntd</artifactId>
+  <name>ssntd</name>
+  <parent>
+  	<groupId>il.ac.technion.geoinfo</groupId>
+  	<artifactId>trend-detection-all</artifactId>
+  	<version>0.0.1-SNAPSHOT</version>
+  </parent>
+  
+   <properties>
+    <neo4j.version>1.8.1</neo4j.version>
+    <neo4j.graphcollections.version>0.5-SNAPSHOT</neo4j.graphcollections.version>
+    <neo4j.spatial.version>0.10-SNAPSHOT</neo4j.spatial.version>
+    <spring.version>3.1.2.RELEASE</spring.version>
+   </properties>
+  
+  <repositories>
+   	<repository>
+	      <id>neo4j-public-repository</id>
+	      <name>Publically available Maven 2 repository for Neo4j</name>
+	      <url>http://m2.neo4j.org</url>
+	      <snapshots>
+          	<enabled>true</enabled>
+	      </snapshots>
+	      <releases>
+        	<enabled>true</enabled>
+      	  </releases>
+	  </repository>	  
+	  
+<!--  	  <repository>
+      <id>neo4j-snapshot-repository</id>
+      <name>Maven 2 snapshot repository for Neo4j</name>
+      <url>http://m2.neo4j.org/content/repositories/snapshots</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+    </repository>
+    <repository>
+      <id>neo4j-release-repository</id>
+      <name>Maven 2 release repository for Neo4j</name>
+      <url>http://m2.neo4j.org/content/repositories/releases</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </repository>
+
+    <repository>
+      <id>tinkerpop-snapshot-repository</id>
+      <name>Tinkerpop snapshot repo</name>
+      <url>http://tinkerpop.com/maven2</url>
+    </repository>
+    -->
+    
+
+  </repositories>
+  
+  
+  <dependencies>
+  <!-- Neo4j -->
+     <dependency>
+            <groupId>org.neo4j</groupId>
+            <artifactId>neo4j-graph-collections</artifactId>
+            <version>${neo4j.graphcollections.version}</version>
+     </dependency>
+     <dependency>
+    	<groupId>org.neo4j</groupId>
+    	<artifactId>neo4j-rest-graphdb</artifactId>
+    	<version>${neo4j.version}</version>
+	</dependency>
+    <dependency>
+            <groupId>org.neo4j</groupId>
+            <artifactId>neo4j</artifactId>
+            <version>${neo4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.neo4j</groupId>
+            <artifactId>server-api</artifactId>
+            <version>${neo4j.version}</version>
+            <!--<scope>provided</scope>-->
+        </dependency>
+        <dependency>
+            <groupId>org.neo4j</groupId>
+            <artifactId>neo4j-kernel</artifactId>
+            <version>${neo4j.version}</version>
+            <type>test-jar</type>
+            <!--<scope>provided</scope>-->
+        </dependency>
+        <dependency>
+            <groupId>org.neo4j.app</groupId>
+            <artifactId>neo4j-server</artifactId>
+            <version>${neo4j.version}</version>
+            <!--<scope>provided</scope>-->
+        </dependency>
+        <dependency>
+            <groupId>org.neo4j.app</groupId>
+            <artifactId>neo4j-server</artifactId>
+            <version>${neo4j.version}</version>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.neo4j.examples</groupId>
+            <artifactId>neo4j-examples</artifactId>
+            <version>${neo4j.version}</version>
+            <type>test-jar</type>
+            <scope>test</scope>
+       </dependency>
+    
+    
+        <dependency>
+          <groupId>org.neo4j</groupId>
+          <artifactId>neo4j-spatial</artifactId>
+          <version>${neo4j.spatial.version}</version>
+        </dependency>
+	
+	<!-- Not sure if needed check error form geoPipeline -->
+	<!--<dependency>-->
+  		<!--<groupId>com.tinkerpop.gremlin</groupId>-->
+  		<!--<artifactId>gremlin-groovy</artifactId>-->
+		<!--<version>1.5</version>-->
+		<!--<type>jar</type>-->
+        <!--<scope>provided</scope>-->
+	<!--</dependency>-->
+
+    <!--Spring-->
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-test</artifactId>
+        <version>${spring.version}</version>
+    </dependency>
+	
+	<!-- JTS -->
+	<dependency>
+		<groupId>com.vividsolutions</groupId>
+		<artifactId>jts</artifactId>
+		<version>1.12</version>
+	</dependency>
+	<!-- junit4 -->
+	<dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.8.1</version>
+      <scope>test</scope>
+    </dependency>
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-test</artifactId>
+          <version>3.1.2.RELEASE</version>
+      </dependency>
+  </dependencies>
+  
+ 
+  
+</project>
