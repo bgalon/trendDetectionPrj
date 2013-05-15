@@ -44,8 +44,8 @@ public class RoadSegmentLoader extends DefaultLoader {
             Node tempGeoNode = tempSpatialRecord.getGeomNode();
             for (String key : tempGeoNode.getPropertyKeys()){
                 //these key are created and manage by the neo4j spatial
-                if (key != "gtype" && key != "wkt" && key != "bbox") {
-                    attMap.put(key,(String)tempGeoNode.getProperty(key));
+                if (!key.equals("gtype") && !key.equals("wkt") && !key.equals("bbox")) {
+                    attMap.put(key,tempGeoNode.getProperty(key).toString());
                 }
             }
 

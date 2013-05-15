@@ -7,6 +7,8 @@ import il.ac.technion.geoinfo.ssntd.datalayer.graph.loaders.RoadSegmentLoader;
 import il.ac.technion.geoinfo.ssntd.domain.graphImpl.SpatialNode;
 import il.ac.technion.geoinfo.ssntd.domain.interfaces.IConstants;
 import il.ac.technion.geoinfo.ssntd.domain.interfaces.ISpatialEntity;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.neo4j.gis.spatial.*;
 import org.neo4j.gis.spatial.pipes.GeoPipeline;
 import org.neo4j.graphdb.GraphDatabaseService;
@@ -20,7 +22,9 @@ import java.util.Map;
 
 public class SpatialStorageGraphImpl implements SpatialStorage, IConstants {
 
-	private static final String LEVELS_NAME = "level";
+    private final Logger logger = LogManager.getLogger(SpatialStorageGraphImpl.class);
+
+    private static final String LEVELS_NAME = "level";
 
 	private final SpatialDatabaseService sdb;
     private final GraphDatabaseService gdb;
@@ -56,13 +60,13 @@ public class SpatialStorageGraphImpl implements SpatialStorage, IConstants {
 		List<Layer> result = new ArrayList<Layer>();
 		int levelNum = 0;
 		while(sdb.containsLayer(levelName(levelNum))){
-            Layer tempLayer = sdb.getDynamicLayer(levelName(levelNum));
-            if (tempLayer == null) continue;
-			result.add(sdb.getDynamicLayer(levelName(levelNum)));
+            Layer tempLayer = sdb.getLayer(levelName(levelNum));
+			result.add(tempLayer);
 		    levelNum++;
 		}
 		levels = result;
 		currentLayer = levelNum;
+        logger.info("level has initialized to " + currentLayer);
 	}
 	
 	
@@ -79,10 +83,13 @@ public class SpatialStorageGraphImpl implements SpatialStorage, IConstants {
 		//TODO:run all this in transaction, we should think a bit more about the transactions.
 		Transaction tx = gdb.beginTx();
 		try{
+            logger.debug("start inserting " + geom);
 			//1.Check if the geometry already exist in the layer
 			GeoPipeline pipeline = GeoPipeline.startEqualExactSearch(layer, geom, 0.001);
 			if (pipeline.count() > 0){
-				throw new Exception("Geometry " + geom.toString() + " alrady exsist in layer" + layer.getName());
+				//throw new Exception("Geometry " + geom.toString() + " alrady exsist in layer" + layer.getName());
+                logger.warn("geometry (" + geom + ") already exist, skipping");
+                return null;
 			}
 			//we assume that the layer is implementation of EditableLayer  
 			if (!(layer instanceof EditableLayer)){
@@ -95,6 +102,7 @@ public class SpatialStorageGraphImpl implements SpatialStorage, IConstants {
             //TODO: add strategy change here
             Collection<ISpatialEntity> toAddCol = null;
             if (geom.getGeometryType().equalsIgnoreCase("LineString")) {
+                logger.debug("adding linestring");
                 toAddCol = roadLoader.loadToLevel(editableLayerlayer, geom, attributes);
             }else{
                 toAddCol = defaultLoader.loadToLevel(editableLayerlayer, geom, attributes);
@@ -102,7 +110,7 @@ public class SpatialStorageGraphImpl implements SpatialStorage, IConstants {
             if (toAddCol == null){
                 return null;
             }
-
+            logger.debug("loader found " + toAddCol.size() + " entities");
             //4.create spatial entity, find and update children
             List<ISpatialEntity> resultList = new ArrayList<ISpatialEntity>();
             for(ISpatialEntity se : toAddCol) {
@@ -117,7 +125,6 @@ public class SpatialStorageGraphImpl implements SpatialStorage, IConstants {
                 }
                 resultList.add(se);
             }
-
 			tx.success();
 			return resultList;
 		}catch(Exception ex){
