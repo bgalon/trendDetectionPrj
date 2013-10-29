@@ -12,5 +12,7 @@ public interface SpatialStorage {
 	int getNumOfLevels();
 	void closeLevel();
     void shutdown();
+
+
 	
 }

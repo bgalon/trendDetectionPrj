@@ -9,7 +9,7 @@
   </parent>
   
    <properties>
-    <neo4j.version>1.8.1</neo4j.version>
+    <neo4j.version>1.8.2</neo4j.version>
     <neo4j.graphcollections.version>0.5-SNAPSHOT</neo4j.graphcollections.version>
     <neo4j.spatial.version>0.10-SNAPSHOT</neo4j.spatial.version>
     <spring.version>3.1.2.RELEASE</spring.version>
@@ -26,7 +26,7 @@
 	      <releases>
         	<enabled>true</enabled>
       	  </releases>
-	  </repository>	  
+	  </repository>
 	  
 <!--  	  <repository>
       <id>neo4j-snapshot-repository</id>

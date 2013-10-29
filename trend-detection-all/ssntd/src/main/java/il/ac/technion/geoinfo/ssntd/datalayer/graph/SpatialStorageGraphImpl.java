@@ -160,7 +160,6 @@ public class SpatialStorageGraphImpl implements SpatialStorage, IConstants {
 		return LEVELS_NAME + level;
 	}
 
-
     @Override
     public void shutdown() {
         gdb.shutdown();

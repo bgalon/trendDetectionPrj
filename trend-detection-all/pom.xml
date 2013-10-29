@@ -26,6 +26,7 @@
   <modules>
   	<module>ssntd</module>
   	<module>geoEntitiesCreator</module>
+    <module>ssntdWebService</module>
   </modules>
 
     <dependencyManagement>
